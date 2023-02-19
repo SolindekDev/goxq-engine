@@ -31,4 +31,4 @@ of the magic is starting on
 3) [html](./html/) - Folder for HTML lexer and parser
 4) [core](./core/) - Folder for some useful functions 
 5) [render](./render/) - Folder for window management and render stuff also UI
-   a) [components](./render/components/) - This folder holds UI Components
+    - [components](./render/components/) - This folder holds UI Components
