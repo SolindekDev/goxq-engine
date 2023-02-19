@@ -17,5 +17,6 @@ But how does even Goxq work i will describe everything in steps what does the pr
 4) Wait for user inputs
 5) Get into constant loop
 6) Clean up fonts and unallocate all of the memory
+
 The main entry point of this program is at [./main.c](./main.c) there's where all
 of the magic is starting on
