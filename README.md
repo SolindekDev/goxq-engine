@@ -22,3 +22,5 @@ The main entry point of this program is at [./main.c](./main.c) there's where al
 of the magic is starting on
 # FAQ
 1) Why did i used C as programming language - Because of its simplicity i can create everything in C. I of course thought about other languages but no one of them got in to my heart like C, I was thinking about getting Rust up and running but I like that when I can do everything what I really can
+2) Why SDL2 instead of GFLW or SFML - As well like the C i just like simplicity and this is what SDL gives me just a cool library in which i can do everything that I really want to! And also i was working in lot's of times so i know how to use it
+3) Is creating a web engine in 2023 overkill? - Yes and No, Yes because web is now so overwhelmed there's is lots of technologies that you need to get up and running in your browser if you even would like to be used by others, but No because as I mentioned this wont be a big projects for millions of people but just a thing for me to learn how does browser work and kill my willingness to live lol
