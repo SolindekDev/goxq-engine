@@ -20,3 +20,5 @@ But how does even Goxq work i will describe everything in steps what does the pr
 
 The main entry point of this program is at [./main.c](./main.c) there's where all
 of the magic is starting on
+# FAQ
+1) Why did i used C as programming language - Because of its simplicity i can create everything in C. I of course thought about other languages but no one of them got in to my heart like C, I was thinking about getting Rust up and running but I like that when I can do everything what I really can
