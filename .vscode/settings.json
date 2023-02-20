@@ -1,0 +1,28 @@
+{
+    "files.associations": {
+        "drawing.h": "c",
+        "sdl.h": "c",
+        "window.h": "c",
+        "includes.h": "c",
+        "vec2.h": "c",
+        "app.h": "c",
+        "types.h": "c",
+        "todo.h": "c",
+        "stdio.h": "c",
+        "url.h": "c",
+        "gradient.h": "c",
+        "color.h": "c",
+        "stdalign.h": "c",
+        "stdbool.h": "c",
+        "stdarg.h": "c",
+        "stdlib.h": "c",
+        "stddef.h": "c",
+        "ctype.h": "c",
+        "regex.h": "c",
+        "math.h": "c",
+        "cmath": "c",
+        "libc-header-start.h": "c",
+        "font.h": "c",
+        "sdl_ttf.h": "c"
+    }
+}
