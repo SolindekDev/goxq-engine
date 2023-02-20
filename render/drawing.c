@@ -1,5 +1,6 @@
 #include <render/drawing.h>
 #include <render/window.h>
+#include <render/font.h>
 
 #include <core/includes.h>
 #include <core/color.h>
@@ -7,6 +8,7 @@
 #include <core/vec2.h>
 #include <core/todo.h>
 
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL.h>
 
 /* This function does draw a circle but not filled */
@@ -459,8 +461,45 @@ void draw_thick_line(window_t* window, vec2_t start, vec2_t end, color_t color, 
     //     draw_line(window, create_vec2(start.x, start.y + i), create_vec2(end.x, end.y + i), color);
 }
 
-
-void draw_text_raw(window_t* window, vec2_t pos, color_t color_fg, i32 newline, str text)
+vec2_t draw_text_raw_format(window_t* window, vec2_t pos, color_t color_fg, i32 newline, i32 font_size, str text, ...)
 {
+    va_list list;
+    va_start(list, text);
 
+    i8 buffer[2048];
+    vsprintf(buffer, text, list);
+    vec2_t return_vec = draw_text_raw(window, pos, color_fg, newline, font_size, buffer);
+
+    va_end(list);
+    return return_vec;
+}
+
+vec2_t draw_text_raw(window_t* window, vec2_t pos, color_t color_fg, i32 newline, i32 font_size, str text)
+{
+    SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(get_font_by_size(font_size), text, 
+                                                          to_sdl_color(color_fg), (u32)newline);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(window->sdl_main_renderer, surface);
+
+    vec2_t font_size_texture = { 0, 0 };
+    SDL_QueryTexture(texture, NULL, NULL, (i32*)&font_size_texture.x, (i32*)&font_size_texture.y);
+    SDL_Rect rect = { (i32)pos.x, (i32)pos.y, (i32)font_size_texture.x, (i32)font_size_texture.y };
+    SDL_RenderCopy(window->sdl_main_renderer, texture, NULL, &rect);
+
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+    return font_size_texture;
+}
+
+vec2_t get_font_size(window_t* window, i32 newline, i32 font_size, str text)
+{
+    SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(get_font_by_size(font_size), text, 
+                                                          to_sdl_color(WHITE_COLOR), (u32)newline);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(window->sdl_main_renderer, surface);
+
+    vec2_t font_size_texture = { 0, 0 };
+    SDL_QueryTexture(texture, NULL, NULL, (i32*)&font_size_texture.x, (i32*)&font_size_texture.y);  
+
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+    return font_size_texture;
 }

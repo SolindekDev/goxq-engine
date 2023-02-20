@@ -28,7 +28,10 @@ void draw_fill_triangle(window_t* window, vec2_t point1, vec2_t point2, vec2_t p
 void draw_line(window_t* window, vec2_t start, vec2_t end, color_t color);
 void draw_thick_line(window_t* window, vec2_t start, vec2_t end, color_t color, i32 thickness);
 
-void draw_text_raw(window_t* window, vec2_t pos, color_t color_fg, i32 newline, str text);
+vec2_t draw_text_raw_format(window_t* window, vec2_t pos, color_t color_fg, i32 newline, i32 font_size, str text, ...);
+vec2_t draw_text_raw(window_t* window, vec2_t pos, color_t color_fg, i32 newline, i32 font_size, str text);
+
+vec2_t get_font_size(window_t* window, i32 newline, i32 font_size, str text);
 
 void draw_arc(window_t* window, color_t color, i32 x, i32 y, i32 radius, i32 start, i32 end);
 

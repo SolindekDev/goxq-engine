@@ -9,6 +9,8 @@ typedef struct color_t {
     u8 r, g, b, a;
 } color_t;
 
+#define WHITE_COLOR (color_t){ 255, 255, 255, 255 }
+
 color_t create_color(u8 r, u8 g, u8 b, u8 a);
 
 SDL_Color to_sdl_color(color_t color);

@@ -36,10 +36,10 @@ void draw_horizontal_gradient(window_t* window, color_t start_color, color_t end
     {
         draw_fill_rect(window, create_vec2(pos.x + i, pos.y), create_vec2(1, size.y), 
                        create_color(
-                            start_color.r + (i32)(r_step * i),
-                            start_color.g + (i32)(g_step * i),
-                            start_color.b + (i32)(b_step * i),
-                            start_color.a + (i32)(a_step * i)
+                            (u8)((i32)start_color.r + (i32)(r_step * (f32)i)),
+                            (u8)((i32)start_color.g + (i32)(g_step * (f32)i)),
+                            (u8)((i32)start_color.b + (i32)(b_step * (f32)i)),
+                            (u8)((i32)start_color.a + (i32)(a_step * (f32)i))
                        ));
     }
 }
@@ -55,10 +55,10 @@ void draw_linear_gradient(window_t* window, color_t start_color, color_t end_col
     {
         draw_fill_rect(window, create_vec2(pos.x, pos.y + i), create_vec2(size.x, 1), 
                        create_color(
-                            start_color.r + (i32)(r_step * i),
-                            start_color.g + (i32)(g_step * i),
-                            start_color.b + (i32)(b_step * i),
-                            start_color.a + (i32)(a_step * i)
+                            (u8)((i32)start_color.r + (i32)(r_step * (f32)i)),
+                            (u8)((i32)start_color.g + (i32)(g_step * (f32)i)),
+                            (u8)((i32)start_color.b + (i32)(b_step * (f32)i)),
+                            (u8)((i32)start_color.a + (i32)(a_step * (f32)i))
                        ));
     }
 }
@@ -89,8 +89,8 @@ void draw_multicolor_gradient(window_t* window, gradient_type_t gradient_type, c
 
 void draw_multicolor_horizontal_gradient(window_t* window, color_t colors[], i32 num_colors, vec2_t pos, vec2_t size)
 {
-    f32 color_step = 1.0 / (f32)(num_colors - 1);
-    f32 x_step = 1.0 / (f32)size.x;
+    f32 color_step = (f32)1.0 / (f32)(num_colors - 1);
+    f32 x_step = (f32)1.0 / (f32)size.x;
 
     for (i32 i = 0; i < size.x; i++) {
         f32 p = i * x_step;

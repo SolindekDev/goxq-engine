@@ -10,7 +10,7 @@ TTF_Font* fonts[100];
 
 void font_init()
 {
-    if (TTF_Init() == 0)
+    if (TTF_Init() != 0)
     {
         printf("Couldn't initialize SDL_ttf");
         exit(1);
@@ -29,6 +29,7 @@ void font_init()
 
 TTF_Font* get_font_by_size(i32 size)
 {
+    // TODO: Check does your size is correctw
     return fonts[size - 3];
 }
 

@@ -27,8 +27,8 @@ def convert_sources_to_objects(src):
 
 CC = get_default_c_compiler()
 
-CFLAGS = "-c -I./usr/include/SDL2 -O3 -Wall -Wconversion -std=c11 -I include -g3"
-LDFLAGS = "-lm -lSDL2"
+CFLAGS = "-c -I./usr/include/SDL2 -O3 -Wall -std=c11 -I include -g3"
+LDFLAGS = "-lm -lSDL2 -lSDL2_ttf"
 
 SOURCES = get_all_file_sources(".")
 OBJECTS = convert_sources_to_objects(SOURCES)

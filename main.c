@@ -5,9 +5,9 @@
 #include <core/types.h>
 #include <core/color.h>
 
+#include <render/component_manager.h>
 #include <render/window.h>
 #include <render/events.h>
-#include <render/elements.h>
 #include <render/drawing.h>
 #include <render/screen.h>
 

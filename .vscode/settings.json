@@ -23,6 +23,11 @@
         "cmath": "c",
         "libc-header-start.h": "c",
         "font.h": "c",
-        "sdl_ttf.h": "c"
+        "sdl_ttf.h": "c",
+        "button.h": "c",
+        "component_manager.h": "c",
+        "input.h": "c",
+        "text.h": "c",
+        "events.h": "c"
     }
 }

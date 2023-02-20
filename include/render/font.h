@@ -1,6 +1,8 @@
 #ifndef FONT_H
 #define FONT_H
 
+#include <core/types.h>
+
 #include <SDL2/SDL_ttf.h>
 
 #define FONT_PATH "./assets/OpenSans.ttf"
