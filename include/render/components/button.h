@@ -8,8 +8,11 @@
 
 #include <SDL2/SDL.h>
 
-#define DEFAULT_BTN_BORDER_COLOR (color_t){ 72,  78,  84,  255 }
-#define DEFAULT_BTN_BG_COLOR     (color_t){ 38,  38,  38,  255 }
+#define DEFAULT_BTN_BORDER_COLOR   (color_t){ 72,  78,  84,  255 }
+#define DEFAULT_HOVER_BTN_BG_COLOR (color_t){ 45,  45,  45,  255 }
+#define DEFAULT_BTN_BG_COLOR       (color_t){ 38,  38,  38,  255 }
+
+typedef void (*BTN_CALLBACK)(component_ui_t* component, window_t* window, SDL_Event event, component_event_type_t type);
 
 void button_draw_function(component_ui_t* component, window_t* window);
 void button_init_function(component_ui_t* component, window_t* window);
