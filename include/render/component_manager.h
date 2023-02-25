@@ -22,9 +22,10 @@ typedef void (*INIT_COMPONENT_FUNCTION)(struct component_ui_t*, window_t*);
 typedef void (*EVENT_COMPONENT_FUNCTION)(struct component_ui_t*, window_t*, SDL_Event);
 
 typedef enum component_type_t {
-    component_BUTTON,
+    component_BOX,
+    component_TEXT,
     component_INPUT,
-    component_TEXT
+    component_BUTTON
 } component_type_t;
 
 typedef struct component_ui_t {
@@ -72,7 +73,9 @@ typedef struct component_ui_t {
 
     struct {
         str value;
+
         vec2_t pos;
+        vec2_t size;
 
         i32 font_size;
 
@@ -96,9 +99,29 @@ typedef struct component_ui_t {
         i32 value_length;
 
         bool only_numbers;
+        bool focus;
 
         void (*input_callback)(struct component_ui_t* component, window_t* window, SDL_Event event, component_event_type_t type);
     } component_input;
+
+    struct {
+        vec2_t pos;
+        vec2_t size;
+
+        color_t bg_color; 
+
+        i32 padding_top;
+        i32 padding_left;
+        i32 padding_right;
+        i32 padding_bottom;
+        
+        i32 margin_top;
+        i32 margin_left;
+        i32 margin_right;
+        i32 margin_bottom;
+
+        i32 border_radius;
+    } component_box;
 } component_ui_t;
 
 typedef void (*BTN_CALLBACK)(component_ui_t* component, window_t* window, SDL_Event event, component_event_type_t type);
@@ -106,14 +129,18 @@ typedef void (*INPUT_CALLBACK)(component_ui_t* component, window_t* window, SDL_
 
 component_ui_t create_component_input  (str value, vec2_t pos, i32 font_size, color_t border_color,  color_t bg_color, color_t fg_color, i32 padding_top, 
                                        i32 padding_left, i32 padding_right, i32 padding_bottom, i32 margin_top, i32 margin_left, i32 margin_right, i32 margin_bottom,
-                                       i32 border_radius, bool only_numbers, i32 max_length, INPUT_CALLBACK input_callback);
+                                       i32 border_radius, bool only_numbers, i32 max_length, INPUT_CALLBACK input_callback, vec2_t size);
 
+// TODO: add size to buttons ui component
 component_ui_t  create_component_button(str text, vec2_t pos, i32 font_size, color_t border_color,  color_t bg_color, color_t fg_color, i32 padding_top, 
                                        i32 padding_left, i32 padding_right, i32 padding_bottom, i32 margin_top, i32 margin_left, i32 margin_right, i32 margin_bottom,
                                        i32 border_radius, BTN_CALLBACK btn_callback);
 
 component_ui_t create_component_text(str text, vec2_t pos, i32 font_size, color_t fg_color, i32 padding_top, i32 padding_left, i32 padding_right, 
                                      i32 padding_bottom, i32 margin_top, i32 margin_left, i32 margin_right, i32 margin_bottom);
+
+component_ui_t create_component_box(vec2_t pos, vec2_t size, color_t bg_color,  i32 padding_top, i32 padding_left, i32 padding_right, i32 padding_bottom, 
+                                    i32 margin_top, i32 margin_left, i32 margin_right, i32 margin_bottom, i32 border_radius);
 
 void append_component(component_ui_t component);
 

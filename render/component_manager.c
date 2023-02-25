@@ -3,6 +3,7 @@
 #include <render/components/button.h>
 #include <render/components/input.h>
 #include <render/components/text.h>
+#include <render/components/box.h>
 
 #define MAX_COMPONENTS (1024)
 
@@ -12,14 +13,13 @@ i32 components_length = 0;
 
 component_ui_t create_component_input  (str value, vec2_t pos, i32 font_size, color_t border_color,  color_t bg_color, color_t fg_color, i32 padding_top, 
                                        i32 padding_left, i32 padding_right, i32 padding_bottom, i32 margin_top, i32 margin_left, i32 margin_right, i32 margin_bottom,
-                                       i32 border_radius, bool only_numbers, i32 max_length, INPUT_CALLBACK input_callback)
+                                       i32 border_radius, bool only_numbers, i32 max_length, INPUT_CALLBACK input_callback, vec2_t size)
 {
-    return (component_ui_t){
+    component_ui_t component_input = (component_ui_t){
         .component_name = "Input", .component_id = components_length + 1,
         .type = component_INPUT, .draw_function = input_draw_function,
         .init_function = input_init_function, .event_function = input_event_function,
         .component_input = {
-            .value = value,
             .pos = pos,
             .font_size = font_size,
             .border_color = border_color,
@@ -35,12 +35,42 @@ component_ui_t create_component_input  (str value, vec2_t pos, i32 font_size, co
             .margin_bottom = margin_bottom,
             .border_radius = border_radius,
             .max_length = max_length,
-            .value_length = 0,
+            .value_length = strlen(value),
             .only_numbers = only_numbers,
-            .input_callback = input_callback
+            .input_callback = input_callback,
+            .size = size
         }
     };
-}                                       
+    component_input.component_input.value = malloc(sizeof(i8) * (component_input.component_input.value_length + 1));
+    strcpy(component_input.component_input.value, value);
+
+    return component_input;
+}       
+
+
+component_ui_t create_component_box(vec2_t pos, vec2_t size, color_t bg_color,  i32 padding_top, i32 padding_left, i32 padding_right, i32 padding_bottom, 
+                                    i32 margin_top, i32 margin_left, i32 margin_right, i32 margin_bottom, i32 border_radius)
+{
+    return (component_ui_t){
+        .component_name = "Box", .component_id = components_length + 1,
+        .type = component_BOX, .draw_function = box_draw_function,
+        .init_function = box_init_function, .event_function = box_event_function,
+        .component_box = {
+            .pos = pos,
+            .size = size,
+            .bg_color = bg_color, 
+            .padding_top = padding_top,
+            .padding_left = padding_left,
+            .padding_right = padding_right,
+            .padding_bottom = padding_bottom,
+            .margin_top = margin_top,
+            .margin_left = margin_left,
+            .margin_right = margin_right,
+            .margin_bottom = margin_bottom,
+            .border_radius = border_radius
+        }
+    };
+}
 
 component_ui_t  create_component_button(str text, vec2_t pos, i32 font_size, color_t border_color,  color_t bg_color, color_t fg_color, i32 padding_top, 
                                        i32 padding_left, i32 padding_right, i32 padding_bottom, i32 margin_top, i32 margin_left, i32 margin_right, i32 margin_bottom,
